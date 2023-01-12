@@ -5,6 +5,8 @@ import axios from 'axios';
 export const useCounterStore = defineStore('counter', {
   state: () => ({
     cars: [],
+    cars_no_change: [],
+    cars_filter: [],
     categories: [],
     limit: []
   }),
@@ -15,6 +17,10 @@ export const useCounterStore = defineStore('counter', {
        try {
         let res = await axios.get("http://autouz.pythonanywhere.com/productlar/")
         this.cars = res.data
+
+        this.cars_no_change = [...this.cars]
+        this.cars_filter = [...this.cars]
+
         this.limit = [...this.cars]
         this.cars.length >= 6 ? this.limit.length = 6 : this.limit
         console.log(this.limit);
@@ -30,10 +36,16 @@ export const useCounterStore = defineStore('counter', {
        console.log(error);
       }
    },
+   log(){
+    console.log("ishladi");
+   }
 
   },
 
   getters: {
+    MarkaFilter(){
+
+    }
 
   },
 });

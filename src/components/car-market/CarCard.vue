@@ -1,7 +1,7 @@
 <template >
   <div>
     <q-intersection
-      v-for="car in store.cars"
+      v-for="car in store.cars_filter"
       :key="car"
       transition="scale"
       class="example-item"
