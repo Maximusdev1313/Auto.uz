@@ -30,10 +30,11 @@ export const useCounterStore = defineStore('counter', {
        console.log(error);
       }
    },
+
   },
 
   getters: {
-    
+
   },
 });
 
