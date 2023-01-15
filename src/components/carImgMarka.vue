@@ -1,7 +1,8 @@
 <template>
   <div>
+    <div >
     <!-- text boshlanishi sarlavha -->
-    <div class="text row  items-end bg-white">
+    <div class="text row  items-end bg-white" >
        <div>
         <div class="text__title text-h4 text-weight-bold">
           Select auto parts by make
@@ -14,7 +15,7 @@
      <!-- text tugashi sarlavha -->
 
      <!-- markalar boshlanishi -->
-    <div class="container q-mt-lg q-gutter-md  row justify-between">
+    <div class="container q-mt-lg q-gutter-md  row justify-between" v-if="!store.loading">
         <div class="make bg-grey-3 row  shadow-10 justify-center" v-for="i in 10" :key="i">
             <div class="make__img">
               <q-img src="https://images.satu.kz/68605191_w640_h640_mersedes-slk-klass.jpg" alt=""/>
@@ -24,14 +25,18 @@
             </div>
         </div>
     </div>
-    <!-- markalar tugashi -->
   </div>
+  <Loading />    
+
+  </div>
+  
 </template>
 
-<script>
-  export default {
+<script setup>
+import Loading from 'src/components/loading.vue'
+import { useCounterStore } from 'src/stores';
+  const store = useCounterStore()
 
-  }
 </script>
 
 <style  scoped>

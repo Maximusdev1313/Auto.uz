@@ -2,7 +2,7 @@
   <div class="container page-wrapper">
   <div class="page-inner">
 
-    <div class="row" >
+    <div class="row" v-if="!store.loading">
       <q-intersection
         v-for="car in store.cars"
         :key="car.car_name"
@@ -38,11 +38,18 @@
         </router-link>
       </q-intersection>
     </div>
+    
+     
   </div>
+  <div>
+      <loading/>
+    </div>
 </div>
 </template>
 <script setup>
+import loading from '../components/loading.vue'
 import {useCounterStore} from 'src/stores/index';
+
 const store = useCounterStore()
 store.getApi()
 

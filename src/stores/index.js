@@ -1,5 +1,5 @@
 import { store } from 'quasar/wrappers'
-import { createPinia,defineStore } from 'pinia'
+import { createPinia, defineStore } from 'pinia'
 import axios from 'axios';
 
 export const useCounterStore = defineStore('counter', {
@@ -8,42 +8,51 @@ export const useCounterStore = defineStore('counter', {
     cars_no_change: [],
     cars_filter: [],
     categories: [],
-    limit: []
-  }),
+    limit: [],
+    loading: true,
+    error: false
+
+  }), 
 
 
   actions: {
-    async getApi(){
-       try {
+    async getApi() {
+      try {
+
         let res = await axios.get("http://autouz.pythonanywhere.com/productlar/")
         this.cars = res.data
-
         this.cars_no_change = [...this.cars]
         this.cars_filter = [...this.cars]
 
         this.limit = [...this.cars]
         this.cars.length >= 6 ? this.limit.length = 6 : this.limit
+        this.loading = false
         console.log(this.limit);
-       } catch (error) {
-        console.log(error);
-       }
-    },
-    async getApiCategory(){
-      try {
-       let res = await axios.get("http://autouz.pythonanywhere.com/categoriya/")
-       this.categories = res.data
+
       } catch (error) {
-       console.log(error);
+        this.error = true
+
       }
-   },
-   log(){
-    console.log("ishladi");
-   }
+    },
+    async getApiCategory() {
+      try {
+        let res = await axios.get("http://autouz.pythonanywhere.com/categoriya/")
+        this.categories = res.data
+        this.loading = false
+        
+      } catch (error) {
+        this.error = true
+      }
+    },
+
+    log() {
+      console.log("ishladi");
+    }
 
   },
 
   getters: {
-    MarkaFilter(){
+    MarkaFilter() {
 
     }
 

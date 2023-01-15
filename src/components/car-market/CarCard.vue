@@ -1,5 +1,6 @@
 <template >
   <div>
+    <div v-if="!store.loading">
     <q-intersection
       v-for="car in store.cars_filter"
       :key="car"
@@ -106,12 +107,16 @@
       </div>
     </q-intersection>
   </div>
+  
+    <Loading/>
+
+  </div>
 </template>
 
 <script setup>
 import { useCounterStore } from "src/stores/index";
 import{ref} from 'vue'
-
+import Loading from 'src/components/loading.vue'
 const slide = ref(1)
 const store = useCounterStore();
 store.getApi();

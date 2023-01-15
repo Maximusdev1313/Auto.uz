@@ -11,16 +11,21 @@
          <!-- car name tugashi -->
       </div>
     </div>
+    <div >
+      <loading/>
+    </div>
   </div>
 </template>
 
 <script setup>
+import loading from 'src/components/loading.vue'
 import {useCounterStore} from 'src/stores/index'
 const store = useCounterStore()
 store.getApiCategory()
 </script>
 
 <style  scoped>
+
 .conatiner {
   width: 100%;
   height: auto;
